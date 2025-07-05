@@ -1,0 +1,234 @@
+/* static/css/style.css */
+
+/*
+  Ini adalah file CSS utama untuk proyek "Instagram Cupit Series".
+  Kami akan menggunakan Tailwind CSS untuk styling dasar agar terlihat modern
+  dan responsif, serta menambahkan beberapa sentuhan kustom untuk "coffee shop vibes".
+*/
+
+/* Import Tailwind CSS - Akan dimuat melalui CDN di HTML */
+/* Atau jika menggunakan proses build Tailwind, ini akan di-compile */
+
+/*
+  Karena ini adalah file CSS yang akan disertakan dalam HTML,
+  kita akan langsung menulis CSS biasa. Jika ingin menggunakan
+  kelas Tailwind, pastikan Tailwind CSS CDN sudah dimuat
+  di file `base.html` atau sudah di-compile.
+  Untuk tujuan demonstrasi ini, saya akan menulis CSS yang mirip
+  dengan apa yang akan dihasilkan oleh Tailwind atau kustom murni.
+*/
+
+:root {
+    --primary-color: #6F4E37; /* Coffee brown */
+    --secondary-color: #B08968; /* Lighter brown/tan */
+    --accent-color: #DDA15E; /* Orange-ish for highlights */
+    --text-dark: #333333;
+    --text-light: #F5F5DC; /* Creamy white */
+    --background-light: #FBFBFB;
+    --border-color: #CFCFCF;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Menggunakan font Inter */
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Memastikan body mengisi seluruh tinggi viewport */
+    background-image: url('../images/background.jpg'); /* Gambar latar belakang */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Membuat latar belakang tetap saat scroll */
+}
+
+/* Container utama untuk layout, agar konten berada di tengah */
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Sedikit transparan agar background terlihat */
+    padding: 2rem;
+    border-radius: 15px; /* Sudut membulat */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Bayangan lembut */
+    max-width: 500px;
+    width: 90%; /* Responsif, lebar 90% dari parent */
+    text-align: center;
+    backdrop-filter: blur(5px); /* Efek blur pada latar belakang kontainer */
+}
+
+h1, h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700; /* Tebal */
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Styling untuk Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Jarak antar elemen form */
+    margin-top: 1.5rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    width: calc(100% - 20px); /* Kurangi padding dari lebar total */
+    padding: 12px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Sudut membulat */
+    font-size: 1rem;
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar total */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transisi halus */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(221, 161, 94, 0.3); /* Cahaya saat fokus */
+    outline: none;
+}
+
+/* Styling untuk Tombol */
+button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px; /* Sudut membulat */
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px); /* Efek sedikit terangkat */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling khusus untuk tombol Generate OTP */
+#generate-otp-btn {
+    background-color: var(--accent-color);
+}
+
+#generate-otp-btn:hover {
+    background-color: #E6B582; /* Sedikit lebih terang saat hover */
+}
+
+/* Styling untuk pesan error */
+.error-message {
+    color: #D32F2F; /* Merah terang */
+    background-color: #FFEBEE; /* Latar belakang merah muda */
+    border: 1px solid #EF9A9A;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Styling untuk daftar hasil pairing */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+li {
+    background-color: var(--text-light); /* Latar belakang item list */
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center; /* Pusatkan konten list item */
+    align-items: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+li a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Desain Responsif */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+        width: 95%; /* Lebih lebar di layar kecil */
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input, select, button {
+        font-size: 0.95rem;
+    }
+}
+
+/* Animasi atau Transisi untuk UI Smooth (Contoh) */
+/* Jika Anda menggunakan JavaScript untuk menampilkan/menyembunyikan langkah form,
+   Anda bisa menambahkan kelas CSS untuk transisi, misalnya: */
+
+/* Contoh untuk elemen yang muncul/hilang */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+/* Kelas untuk menyembunyikan elemen */
+.hidden {
+    display: none;
+}

@@ -1,0 +1,88 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Menggunakan Jinja2 untuk judul halaman yang bisa diganti -->
+    <title>{% block title %}Cupit Series{% endblock %}</title>
+    <!-- Link ke file CSS utama -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Opsional: Link ke Google Fonts untuk Inter, jika belum di-import di CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    body.loading {
+        overflow: hidden;
+        position: relative;
+    }
+
+    #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 999999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .coffee-animation {
+        width: 120px;
+        height: 120px;
+        background: url('/static/images/coffee-blend.gif') no-repeat center/contain;
+        margin-bottom: 1rem;
+    }
+
+    .brand-name {
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: #6b4f4f;
+        animation: fadein 1s ease-in-out;
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
+</head>
+<body>
+             <div id="loading-screen">
+    <div class="coffee-animation"></div>
+    <div class="brand-name">BuanaCoffee</div>
+</div>
+    <div class="container">
+        <!-- Blok konten utama yang akan diisi oleh template turunannya -->
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Link ke file JavaScript utama, diletakkan di akhir body untuk performa -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+    document.body.classList.add('loading');
+
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            document.body.classList.remove('loading');
+        }, 500);
+    }, 5000); // tampil 5 detik fix
+</script>
+
+</body>
+</html>

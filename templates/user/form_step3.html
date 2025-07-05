@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Langkah 3: Pilih Rentang Usia{% endblock %}
+
+{% block content %}
+    <div class="form-container"> {# Gunakan form-container agar konsisten dengan step lain #}
+        <h2>Langkah 3 dari 3: Rentang Usia Anda</h2>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {# Perbaikan di sini: action="{{ url_for('form_step3') }}" #}
+        <form action="{{ url_for('form_step3') }}" method="POST">
+            <div class="form-group">
+                <label for="age_range">Pilih Rentang Usia Anda:</label>
+                <select id="age_range" name="age_range" required>
+                    <option value="">-- Pilih Rentang Usia --</option>
+                    <option value="17-19" {% if prev_data and prev_data.age_range == '17-19' %}selected{% endif %}>17-19 tahun</option>
+                    <option value="20-22" {% if prev_data and prev_data.age_range == '20-22' %}selected{% endif %}>20-22 tahun</option>
+                    <option value="23-25" {% if prev_data and prev_data.age_range == '23-25' %}selected{% endif %}>23-25 tahun</option>
+                    <option value="26-29" {% if prev_data and prev_data.age_range == '26-29' %}selected{% endif %}>26-29 tahun</option>
+                    <option value="30+" {% if prev_data and prev_data.age_range == '30+' %}selected{% endif %}>30+ tahun</option>
+                </select>
+            </div>
+
+            <div class="form-navigation">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('form_step2') }}'">Kembali</button>
+                <button type="submit" class="btn btn-primary">Selesai & Cari Pasangan</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

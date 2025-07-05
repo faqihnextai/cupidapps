@@ -1,0 +1,34 @@
+<!-- templates/user/result.html -->
+<!-- Halaman ini menampilkan hasil pairing (pasangan yang cocok). -->
+{% extends 'base.html' %}
+
+{% block title %}Hasil Pairing Anda{% endblock %}
+
+{% block content %}
+    <h1>Hasil Pencarian Pasangan</h1>
+    {% if match %}
+        <p>Selamat! Berikut akun Instagram yang cocok dengan Anda:</p>
+        <ul class="matches-list">
+            <li style="text-align: center; list-style: none; margin: 2rem 0;">
+                <a href="https://instagram.com/{{ match.instagram_username }}" target="_blank" rel="noopener noreferrer" style="font-size: 1.3em; font-weight: bold; display: inline-block; margin-bottom: 0.5em;">
+                    @{{ match.instagram_username }}
+                </a>
+                <br>
+                <span style="display: block; margin-top: 0.5em;">
+                    Gender: {{ match.gender }}<br>
+                    Rentang Usia: {{ match.age_range }}
+                </span>
+            </li>
+        </ul>
+    {% else %}
+        <div class="no-matches-message">
+            <p>Maaf, saat ini belum ada pasangan yang cocok berdasarkan kriteria Anda.</p>
+            <p>Jangan berkecil hati! Tetap semangat dan nikmati suasana coffee shop Anda.</p>
+            <p>Anda bisa mencoba lagi nanti atau menyesuaikan preferensi Anda.</p>
+        </div>
+    {% endif %}
+
+    <p style="margin-top: 2rem; font-size: 0.9em; color: #666;">
+        Semoga Anda menemukan koneksi yang menyenangkan!
+    </p>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!-- templates/admin/index.html -->
+<!-- File ini adalah halaman admin untuk barista membuat dan melihat OTP. -->
+<!-- Halaman ini mewarisi dari template dasar 'base.html'. -->
+{% extends 'base.html' %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+    <h1>Panel Admin</h1>
+    <p>Selamat datang, Barista! Di sini Anda bisa menghasilkan kode OTP untuk pelanggan.</p>
+
+    <div class="card">
+        <h2>Generate OTP Baru</h2>
+        <button id="generate-otp-btn">Generate OTP</button>
+        <p>Kode OTP Anda: <strong id="otp-display">Menunggu...</strong></p>
+        <p>Masa berlaku: <span id="otp-expiry-info">5 menit</span></p>
+        <p>Berikan kode OTP ini kepada pelanggan untuk mengakses formulir.</p>
+    </div>
+
+    <!-- Bagian opsional: Daftar OTP yang masih aktif -->
+    <div class="card" style="margin-top: 2rem;">
+        <h2>Daftar OTP Aktif (Opsional)</h2>
+        <p>Fitur ini akan menampilkan daftar OTP yang masih aktif dan belum digunakan.</p>
+        <!-- Di sini Anda bisa menambahkan tabel atau daftar yang diisi dari data backend Flask -->
+        <div id="active-otps-list">
+            <p>Belum ada OTP aktif yang ditampilkan.</p>
+            <!-- Contoh struktur (akan diisi oleh Jinja2 dari Flask atau JS):
+            <ul>
+                <li><strong>ABCDEF</strong> (Kadaluwarsa dalam 3 menit)</li>
+                <li><strong>GHIJKL</strong> (Kadaluwarsa dalam 1 menit)</li>
+            </ul>
+            -->
+        </div>
+    </div>
+{% endblock %}

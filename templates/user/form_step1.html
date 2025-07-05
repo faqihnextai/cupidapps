@@ -1,0 +1,90 @@
+<!-- templates/user/form_step1.html -->
+<!-- Halaman untuk langkah pertama form: input username Instagram. -->
+{% extends 'base.html' %}
+
+{% block title %}Langkah 1: Username Instagram{% endblock %}
+
+{% block content %}
+    <div class="form-container"> {# Menggunakan kelas form-container untuk styling konsisten #}
+        <h2>Langkah 1 dari 3: Username Instagram</h2>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('form_step1') }}" method="POST">
+            <div class="form-group username-input-group"> {# Grup untuk @ dan input #}
+                <span class="at-symbol">@</span>
+                <input type="text"
+                       name="instagram_username"
+                       placeholder="nama_pengguna_ig" {# Placeholder diperbarui #}
+                       required
+                       autocomplete="off"
+                       maxlength="30" {# Batasi panjang input sesuai aturan Instagram #}
+                       value="{{ prev_data.instagram_username if prev_data and prev_data.instagram_username else '' }}">
+            </div>
+            
+            <div class="form-navigation">
+                <button type="submit" class="btn btn-primary">Lanjut</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+{# Tambahkan CSS tambahan untuk styling input username #}
+<style>
+    .username-input-group {
+        display: flex; /* Mengatur elemen dalam satu baris */
+        align-items: center; /* Pusatkan secara vertikal */
+        border: 1px solid var(--border-color); /* Border yang sama dengan input lain */
+        border-radius: 8px; /* Sudut membulat */
+        padding: 0 12px; /* Padding di sekitar grup */
+        background-color: white; /* Latar belakang putih */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 1rem; /* Jarak bawah */
+    }
+    .username-input-group:focus-within {
+        border-color: var(--accent-color); /* Warna border saat fokus */
+        box-shadow: 0 0 0 3px rgba(221, 161, 94, 0.3); /* Cahaya saat fokus */
+    }
+    .username-input-group .at-symbol {
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        margin-right: 5px; /* Jarak antara @ dan input */
+        font-weight: bold;
+    }
+    .username-input-group input[type="text"] {
+        flex-grow: 1; /* Input akan mengambil sisa ruang */
+        border: none; /* Hilangkan border individu input */
+        padding: 10px 0; /* Sesuaikan padding agar terlihat serasi */
+        box-sizing: border-box; /* Memastikan padding tidak menambah lebar */
+        font-size: 1rem; /* Ukuran font konsisten */
+    }
+    .username-input-group input[type="text"]:focus {
+        outline: none; /* Hilangkan outline default saat fokus */
+        box-shadow: none; /* Pastikan tidak ada bayangan fokus ganda */
+    }
+    /* Mengatasi pesan flash agar terlihat rapi */
+    .flash-messages {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    .flash-messages li {
+        background-color: #ffe0b2; /* Oranye muda */
+        color: #e65100; /* Oranye gelap */
+        border: 1px solid #ffb74d; /* Border oranye */
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+</style>
+{% endblock %}

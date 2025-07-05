@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Langkah 2: Pilih Gender{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Langkah 2 dari 3: Gender Anda</h2>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('form_step2') }}" method="POST">
+            <div class="form-group">
+                <label for="gender">Pilih Gender Anda:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Laki-laki" {% if prev_data and prev_data.gender == 'Laki-laki' %}selected{% endif %}>Laki-laki</option>
+                    <option value="Perempuan" {% if prev_data and prev_data.gender == 'Perempuan' %}selected{% endif %}>Perempuan</option>
+                </select>
+            </div>
+            
+            <div class="form-navigation">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('form_step1') }}'">Kembali</button>
+                <button type="submit" class="btn btn-primary">Lanjut</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

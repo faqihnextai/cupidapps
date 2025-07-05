@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Halaman Tidak Ditemukan{% endblock %}
+
+{% block content %}
+    <div class="error-container">
+        <h1>404</h1>
+        <h2>Halaman Tidak Ditemukan</h2>
+        <p>Maaf, halaman yang Anda cari tidak ada di sini.</p>
+        <p>Silakan kembali ke <a href="{{ url_for('index') }}">halaman utama</a>.</p>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-container {
+        text-align: center;
+        padding: 50px 20px;
+        background-color: #f8f8f8;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        max-width: 600px;
+        margin: 50px auto;
+    }
+    .error-container h1 {
+        font-size: 6em;
+        color: #ff6347; /* Tomato color */
+        margin-bottom: 10px;
+    }
+    .error-container h2 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .error-container p {
+        font-size: 1.1em;
+        color: #666;
+        line-height: 1.6;
+    }
+    .error-container a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    .error-container a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+PyMySQL
+
+
+
+DB_USER = 'root' # Ganti dengan username MySQL Anda
+DB_PASSWORD = '' # Ganti dengan password MySQL Anda
+DB_HOST = 'localhost' # Atau 'localhost', atau IP server MySQL Anda
+DB_NAME = 'cupit_series_db' # Nama database yang akan digunakan
